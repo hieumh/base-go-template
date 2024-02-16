@@ -35,7 +35,7 @@ func (repo *UserRepository) Create(user *entities.ValidatedUser) error {
 
 func (repo *UserRepository) FindById(id uuid.UUID) (*entities.ValidatedUser, error) {
 	var dbUser User
-	if err := repo.db.Preload("Seller").First(&dbUser, id).Error; err != nil {
+	if err := repo.db.Preload("User").First(&dbUser, id).Error; err != nil {
 		return nil, err
 	}
 

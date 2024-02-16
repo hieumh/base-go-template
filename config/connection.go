@@ -12,7 +12,7 @@ func NewConnection() *gorm.DB {
 	envFile, _ := godotenv.Read(".env")
 	connectionString := envFile["DATABASE_URL"]
 
-	gormDB, err := gorm.Open(mysql.New(mysql.Config{DSN: connectionString}), &gorm.Config{})
+	gormDB, err := gorm.Open(mysql.Open(connectionString), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v.", err)
 	}
